@@ -15,7 +15,8 @@ def post():
     select = request.form.get('radio')
     if select=="東京":
         code=estimater(text,select)
-    elif select=="全国":
+    else:
+        select="全国"
         code=estimater(text,select)
     start_coords,sw,se,ne,nw=polygon(code,select)
     #folium_map=view(name,select)
