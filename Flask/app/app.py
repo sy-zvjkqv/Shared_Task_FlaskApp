@@ -21,8 +21,6 @@ def post():
         code=estimater(text,select)
         zoom=6
     start_coords,sw,se,ne,nw=polygon(code,select)
-    #folium_map=view(name,select)
-    #folium_map.save('templates/map.html')
     return render_template("map.html",text=text,code=code, start_coords= start_coords,sw=sw,se=se,ne=ne,nw=nw,zoom=zoom)
 
 if __name__ == "__main__":
