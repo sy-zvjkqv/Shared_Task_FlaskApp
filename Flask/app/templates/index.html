@@ -15,6 +15,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
     </head>
     <body>
+            <header class="page-header">
+                <h1>Geolocation estimator from Tweet</h1>
+            </header>
             <div class="box1">
                 <form action="/texttolocation/index" method="POST">
                 <p><textarea name="name" cols="30" rows="10" class=".m-form-text" placeholder="文字を入力してください"></textarea></p>
@@ -22,6 +25,11 @@
                 <label for="r2">東京</label><input type="radio" id="r2" name="radio" value="東京">
                 <input type="submit" value="送信">
                 </form>
+            </div>
+            <div class="readme">
+                <p>ツイートから投稿者の位置を推定するAPIです。</p>
+                <p>ボタンで全国を選択すると80km四方の1次地域メッシュ、それ以外の地域を選択すると10km四方の2次地域メッシュを返し地図上に可視化します。</p>
+                <p>詳しくはこちらのサイトをご確認ください。<a href="https://www.stat.go.jp/data/mesh/m_tuite.html">総務省統計局　地域メッシュ統計について</a></p>
             </div>
     </body>
 </html>
