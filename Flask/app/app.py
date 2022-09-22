@@ -16,19 +16,11 @@ def index():
 def post():
     tweet_text = request.form["name"]
     region = request.form.get("radio")
-    if region == "東京":
-        geo_code = geo_code_estimater(tweet_text, region)
-        zoom = 10
-    elif region == "京都":
-        geo_code = geo_code_estimater(tweet_text, region)
-        zoom = 10
-    elif region == "奈良":
-        geo_code = geo_code_estimater(tweet_text, region)
-        zoom = 10
-    else:
-        region = "全国"
-        geo_code = geo_code_estimater(tweet_text, region)
+    geo_code = geo_code_estimater(tweet_text, region)
+    if region == "全国" or region == None:
         zoom = 6
+    else:
+        zoom = 10
     start_coords, sw, se, ne, nw = polygon(geo_code, region)
     return render_template(
         "map.html",
@@ -44,5 +36,5 @@ def post():
 
 
 if __name__ == "__main__":
-    #app.run(host="0.0.0.0", debug=True, port=5125)
-     app.run(debug=True,port=5001)
+    # app.run(host="0.0.0.0", debug=True, port=5125)
+    app.run(debug=True, port=5001)

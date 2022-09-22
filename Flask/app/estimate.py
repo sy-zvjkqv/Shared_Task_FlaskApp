@@ -349,7 +349,7 @@ def geo_code_estimater(name, region="全国"):
         code_estimate_model_path = (
             "/home/is/shuntaro-o/dev/SharedTask_FlaskApp/Flask/app/models/Nara.ckpt"
         )
-    elif region == "全国":
+    elif region == "全国" or region == None:
         arg2mesh = [
             3927,
             3928,

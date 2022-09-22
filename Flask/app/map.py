@@ -83,10 +83,10 @@ def third(meshcode):
     return south / 3600, west / 3600, north / 3600, east / 3600
 
 
-def view(meshcode, select):
-    if select == "東京":
+def view(meshcode, region):
+    if region == "東京":
         south, west, north, east = second(meshcode)
-    elif select == "全国":
+    elif region == "全国":
         south, west, north, east = first(meshcode)
     start_coords = ((south + north) / 2, (west + east) / 2)
     folium_map = folium.Map(location=start_coords, zoom_start=10)
@@ -104,8 +104,8 @@ def view(meshcode, select):
     return folium_map
 
 
-def polygon(meshcode, select="全国"):
-    if select == "全国":
+def polygon(meshcode, region="全国"):
+    if region == "全国" or region == None:
         south, west, north, east = first(meshcode)
     else:
         south, west, north, east = second(meshcode)
