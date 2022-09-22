@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request
 import folium
-from estimate import estimater
+from estimate import geo_code_estimater
 from map import view,first,second,third,polygon
 app = Flask(__name__)
 PREFIX="/texttolocation"
@@ -11,17 +11,23 @@ def index():
 
 @app.route(PREFIX+"/index",methods=["post"])
 def post():
-    text = request.form["name"]
-    select = request.form.get('radio')
-    if select=="東京":
-        code=estimater(text,select)
+    tweet_text = request.form["name"]
+    region = request.form.get('radio')
+    if region=="東京":
+        geo_code=geo_code_estimater(tweet_text,region)
+        zoom=10
+    elif region=="京都":
+        geo_code=geo_code_estimater(tweet_text,region)
+        zoom=10
+    elif region=="奈良":
+        geo_code=geo_code_estimater(tweet_text,region)
         zoom=10
     else:
-        select="全国"
-        code=estimater(text,select)
+        region="全国"
+        geo_code=geo_code_estimater(tweet_text,region)
         zoom=6
-    start_coords,sw,se,ne,nw=polygon(code,select)
-    return render_template("map.html",text=text,code=code, start_coords= start_coords,sw=sw,se=se,ne=ne,nw=nw,zoom=zoom)
+    start_coords,sw,se,ne,nw=polygon(geo_code,region)
+    return render_template("map.html",tweet_text=tweet_text,geo_code=geo_code, start_coords= start_coords,sw=sw,se=se,ne=ne,nw=nw,zoom=zoom)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',debug=True,port=5125)

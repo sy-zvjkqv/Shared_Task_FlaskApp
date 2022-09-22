@@ -115,10 +115,10 @@ def view(meshcode,select):
     return folium_map
 
 def polygon(meshcode,select="全国"):
-    if select=="東京":
-        south,west,north,east=second(meshcode)
-    elif select=="全国":
+    if select=="全国":
         south,west,north,east=first(meshcode)
+    else:
+        south,west,north,east=second(meshcode)
     start_coords =  [(south+north)/2,(west+east)/2]
     sw=[south,west]
     se=[south,east]

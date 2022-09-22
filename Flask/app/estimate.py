@@ -16,8 +16,8 @@ class BertForSequenceClassifier_pl(pl.LightningModule):
             param.requires_grad = False
         for param in self.bert.encoder.layer[-1].parameters():
             param.requires_grad = True
-def estimater(name,select="全国"):
-    if select=="東京":
+def geo_code_estimater(name,region="全国"):
+    if region=="東京":
         arg2mesh=[523871, 523872, 523873, 523874, 523875, 523876, 523877, 523970,
         523971, 523972, 523973, 523974, 523975, 523976, 523977, 533800,
         533802, 533803, 533804, 533805, 533806, 533807, 533811, 533812,
@@ -43,7 +43,27 @@ def estimater(name,select="全国"):
         543912, 543913, 543914, 543915, 543916, 543917, 543920, 543921,
         543922, 543923, 543924, 543925, 543926, 543927, 544010, 544020]
         code_estimate_model_path="/home/is/shuntaro-o/dev/SharedTask_FlaskApp/Flask/app/models/tokyo.ckpt"
-    elif select=="全国":
+    elif region=="京都":
+        arg2mesh=[523477, 523515, 523516, 523517, 523524, 523525, 523526, 523527,
+        523533, 523534, 523535, 523536, 523537, 523542, 523543, 523544,
+        523545, 523546, 523551, 523552, 523553, 523554, 523555, 523556,
+        523560, 523561, 523562, 523563, 523564, 523565, 523566, 523570,
+        523571, 523572, 523573, 523574, 523575, 523576, 523610, 533407,
+        533426, 533427, 533436, 533437, 533447, 533500, 533501, 533502,
+        533503, 533504, 533505, 533506, 533510, 533511, 533512, 533513,
+        533514, 533520, 533521, 533522, 533523, 533530, 533531, 533532,
+        533533, 533540, 533541, 533542, 533543]
+        code_estimate_model_path="/home/is/shuntaro-o/dev/SharedTask_FlaskApp/Flask/app/models/Kyoto.ckpt"
+    elif region=="奈良":
+        arg2mesh=[503575, 503576, 503577, 503670, 503671, 513505, 513506, 513507,
+        513515, 513516, 513517, 513525, 513526, 513527, 513535, 513536,
+        513537, 513545, 513546, 513547, 513555, 513556, 513557, 513565,
+        513566, 513567, 513575, 513576, 513577, 513600, 513601, 513610,
+        513611, 513620, 513621, 513630, 513631, 513640, 513641, 513650,
+        513651, 513660, 513661, 513670, 513671, 523505, 523506, 523507,
+        523600, 523601]
+        code_estimate_model_path="/home/is/shuntaro-o/dev/SharedTask_FlaskApp/Flask/app/models/Nara.ckpt"
+    elif region=="全国":
         arg2mesh=[3927, 3928, 3933, 3942, 3945, 4027, 4028, 4033, 4037, 4040, 4042,
         4043, 4128, 4129, 4130, 4133, 4134, 4135, 4140, 4142, 4143, 4228,
         4229, 4231, 4233, 4236, 4243, 4330, 4331, 4332, 4340, 4428, 4432,
@@ -86,5 +106,5 @@ def estimater(name,select="全国"):
         ans=classifier(output.pooler_output)
         ans = ans.to('cpu').detach().numpy().copy()
         ans=np.argmax(ans)
-        ans=arg2mesh[ans]
-    return ans
+        geo_code=arg2mesh[ans]
+    return geo_code
