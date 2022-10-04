@@ -43,11 +43,11 @@ def first(meshcode):
     p = float(p)
     u = float(u)
     lat = p / 1.5 * 3600
-    lng = (u + 100) * 3600
+    lon = (u + 100) * 3600
     south = lat
-    west = lng
+    west = lon
     north = lat + 40 * 60
-    east = lng + 1 * 3600
+    east = lon + 1 * 3600
     return south / 3600, west / 3600, north / 3600, east / 3600
 
 
@@ -58,11 +58,11 @@ def second(meshcode):
     q = float(q)
     v = float(v)
     lat = p / 1.5 * 3600 + q * 5 * 60
-    lng = (u + 100) * 3600 + v * 7.5 * 60
+    lon = (u + 100) * 3600 + v * 7.5 * 60
     south = lat
-    west = lng
+    west = lon
     north = lat + 5 * 60
-    east = lng + 7.5 * 60
+    east = lon + 7.5 * 60
     return south / 3600, west / 3600, north / 3600, east / 3600
 
 
@@ -75,11 +75,11 @@ def third(meshcode):
     r = float(r)
     w = float(w)
     lat = p / 1.5 * 3600 + q * 5 * 60 + r * 30
-    lng = (u + 100) * 3600 + v * 7.5 * 60 + w * 45
+    lon = (u + 100) * 3600 + v * 7.5 * 60 + w * 45
     south = lat
-    west = lng
+    west = lon
     north = lat + 30
-    east = lng + 45
+    east = lon + 45
     return south / 3600, west / 3600, north / 3600, east / 3600
 
 
