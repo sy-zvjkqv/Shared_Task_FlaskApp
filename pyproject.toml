@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "text2location"
+version = "0.1.0"
+description = ""
+authors = ["Shuntaro Ohnishi"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^2.2.2"
+torch = { url = "https://download.pytorch.org/whl/cu116/torch-1.12.1%2Bcu116-cp310-cp310-linux_x86_64.whl" }
+transformers = "^4.25.1"
+pytorch-lightning = "^1.8.6"
+folium = "^0.14.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
