@@ -1,9 +1,9 @@
-data/*
-models/*
+text2location/data/*
+text2location/models/*
 outputs/*
 notebooks/lightning_logs/*
 Flask/app/models*
-__pycache__
+text2location/__pycache__
 .coverage
 .mypy_cache
 .pytest_cache
