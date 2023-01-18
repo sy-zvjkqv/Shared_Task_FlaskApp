@@ -11,3 +11,4 @@ text2location/__pycache__
 !data/README.md
 !models/README.md
 !outputs/README.md
+.env

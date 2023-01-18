@@ -4,6 +4,14 @@ from transformers import BertTokenizer
 import torch
 import numpy as np
 import pytorch_lightning as pl
+# .env ファイルをロードして環境変数へ反映
+from dotenv import load_dotenv
+load_dotenv()
+
+# 環境変数を参照
+import os
+MYAPP_PATH = os.getenv('PROJECT_PATH')
+
 
 
 class BertForSequenceClassifier_pl(pl.LightningModule):
@@ -216,7 +224,7 @@ def geo_code_estimater(name, region="全国"):
             544020,
         ]
         code_estimate_model_path = (
-            "/home/is/shuntaro-o/dev/SharedTask_FlaskApp/Flask/app/models/tokyo.ckpt"
+            f"{MYAPP_PATH}/models/tokyo.ckpt"
         )
     elif region == "京都":
         arg2mesh = [
@@ -291,7 +299,7 @@ def geo_code_estimater(name, region="全国"):
             533543,
         ]
         code_estimate_model_path = (
-            "/home/is/shuntaro-o/dev/SharedTask_FlaskApp/Flask/app/models/Kyoto.ckpt"
+            f"{MYAPP_PATH}/models/Kyoto.ckpt"
         )
     elif region == "奈良":
         arg2mesh = [
@@ -347,7 +355,7 @@ def geo_code_estimater(name, region="全国"):
             523601,
         ]
         code_estimate_model_path = (
-            "/home/is/shuntaro-o/dev/SharedTask_FlaskApp/Flask/app/models/Nara.ckpt"
+            f"{MYAPP_PATH}/models/Nara.ckpt"
         )
     elif region == "全国" or region == None:
         arg2mesh = [
@@ -597,7 +605,7 @@ def geo_code_estimater(name, region="全国"):
             6841,
             6843,
         ]
-        code_estimate_model_path = "/home/is/shuntaro-o/dev/SharedTask_FlaskApp/Flask/app/models/japan_model.ckpt"
+        code_estimate_model_path = f"{MYAPP_PATH}/models/japan_model.ckpt"
     tokenizer = BertTokenizer.from_pretrained(
         "cl-tohoku/bert-base-japanese-whole-word-masking"
     )

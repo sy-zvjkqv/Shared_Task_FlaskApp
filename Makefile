@@ -1,22 +1,8 @@
-run: ## run notebook for train
-	poetry run python -B scripts/run.py \
-		--input_file "${input_file}" \
-		--output_file "${output_file}" \
-		--batch_size "${batch_size}" \
-		--epoch "${epoch}"
+build:
+	docker build -t text2location:latest .
 
-setup:
-	sh scripts/setup.sh \
-		"${project_name}" \
-		"${your_name}" \
-		"${your_email}" \
-		"${package_name}" \
-
-format: ## format python scripts
-	poetry run black ./src/lib && \
-	poetry run black ./scripts && \
-	poetry run isort ./src/lib && \
-	poetry run isort ./scripts
+start:
+	docker run -it --rm --gpus all -v $(PWD):/app -p 8000:8000 text2location /bin/bash -c "poetry run python text2location/app.py"
 
 sync-push: ## send data to compute server
 	rsync -auvz --exclude-from .rsyncignore . "${TARGET_DIR}"

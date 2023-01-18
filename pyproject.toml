@@ -12,6 +12,7 @@ torch = { url = "https://download.pytorch.org/whl/cu116/torch-1.12.1%2Bcu116-cp3
 transformers = "^4.25.1"
 pytorch-lightning = "^1.8.6"
 folium = "^0.14.0"
+python-dotenv = "^0.21.0"
 
 [build-system]
 requires = ["poetry-core"]
