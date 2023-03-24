@@ -2,7 +2,7 @@ build:
 	docker build -t text2location:latest .
 
 start:
-	docker run -it --rm --gpus all -v $(PWD):/app -p 8000:8000 text2location /bin/bash -c "poetry run python text2location/app.py"
+	docker-compose up
 
 sync-push: ## send data to compute server
 	rsync -auvz --exclude-from .rsyncignore . "${TARGET_DIR}"

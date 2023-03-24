@@ -1,0 +1,26 @@
+version: '3'
+services:
+  texttolocation:
+    restart: always
+    build: .
+    container_name: 'texttolocation-api'
+    # working_dir: '/app'
+    # tty: true
+    volumes:
+      - .:/app
+      # - ./data:/app/data
+      # - ./txt2conll:/app/txt2conll
+      # - ./test_output:/app/test_output
+      # - ./conll2xml:/app/conll2xml
+      # - ./models:/app/models
+      # - .:/app
+    ports:
+      - '8000:8000'
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+    command: poetry run python text2location/app.py

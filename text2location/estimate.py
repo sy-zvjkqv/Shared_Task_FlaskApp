@@ -223,9 +223,7 @@ def geo_code_estimater(name, region="全国"):
             544010,
             544020,
         ]
-        code_estimate_model_path = (
-            f"{MYAPP_PATH}/models/tokyo.ckpt"
-        )
+        code_estimate_model_path = f"{MYAPP_PATH}/models/tokyo.ckpt"
     elif region == "京都":
         arg2mesh = [
             523477,
@@ -298,9 +296,7 @@ def geo_code_estimater(name, region="全国"):
             533542,
             533543,
         ]
-        code_estimate_model_path = (
-            f"{MYAPP_PATH}/models/Kyoto.ckpt"
-        )
+        code_estimate_model_path = f"{MYAPP_PATH}/models/Kyoto.ckpt"
     elif region == "奈良":
         arg2mesh = [
             503575,
@@ -354,9 +350,7 @@ def geo_code_estimater(name, region="全国"):
             523600,
             523601,
         ]
-        code_estimate_model_path = (
-            f"{MYAPP_PATH}/models/Nara.ckpt"
-        )
+        code_estimate_model_path = f"{MYAPP_PATH}/models/Nara.ckpt"
     elif region == "全国" or region == None:
         arg2mesh = [
             3927,
@@ -628,4 +622,5 @@ def geo_code_estimater(name, region="全国"):
         ans = ans.to("cpu").detach().numpy().copy()
         ans = np.argmax(ans)
         geo_code = arg2mesh[ans]
+        #print(torch.cuda.is_available())
     return geo_code
