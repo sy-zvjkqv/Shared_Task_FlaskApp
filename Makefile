@@ -2,7 +2,7 @@ build:
 	docker build -t text2location:latest .
 
 start:
-	docker-compose up
+	docker compose up -d
 
 sync-push: ## send data to compute server
 	rsync -auvz --exclude-from .rsyncignore . "${TARGET_DIR}"
